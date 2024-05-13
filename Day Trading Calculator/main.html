@@ -1,0 +1,50 @@
+<!--Taimur Rizwan
+This program is designed to estimate the average portfolio growth expectancy based on the user's
+trading account capital and the percentage they're willing to risk -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forex Trading Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background">
+        <div id="welcomeModal" class="modal">
+            <div class="modal-content" id="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <img src="C:\Users\taimu\Desktop\Alpha Arc Capital\business logo.png" alt="Alpha Arc Capital Logo" style="max-width: 200px;">
+                <h1>Welcome to the Forex Trading Calculator</h1>
+                <p>by Taimur Rizwan</p>
+                <button class="btn" onclick="closeModal()">Enter</button>
+            </div>
+        </div>
+        
+
+        <div class="container">
+            <header>
+                <img src="C:\Users\taimu\Desktop\Alpha Arc Capital\business logo.png" alt="Alpha Arc Capital Logo" style="max-width: 200px;">
+                <h1>Forex Trading Calculator</h1>
+                <p>This calculator is designed for systems that trade based on probability and statistics to improve risk management techniques. All profits are calculated at 10 pips Take Profit (TP) in EUR/USD.</p>
+            </header>
+            <nav>
+                <button class="btn" onclick="showCompoundingForm()">Compounding Strategy</button>
+                <button class="btn" onclick="showFixedGrowthForm()">Fixed Growth Strategy</button>
+                <button class="btn" onclick="showDrawdownCalculator()">Drawdown Calculator</button>
+            </nav>
+            <div id="formContainer"></div>
+            <div id="results"></div>
+        </div>
+        <div id="fixedGrowthForm" style="display: none;">
+            <h2>Fixed Growth Strategy</h2>
+            <label>Enter your Initial Trading Capital ($): <input type="number" id="initialCapitalFixed" required></label>
+            <label>Enter your Account Risk (%): <input type="number" id="accountRiskFixed" required></label>
+            <button class="btn" onclick="calculateFixedGrowth()">Calculate</button>
+        </div>
+        
+        
+    </div>
+    <script src="features.js"></script>
+</body>
+</html>
