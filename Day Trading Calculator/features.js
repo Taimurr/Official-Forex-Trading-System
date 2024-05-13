@@ -25,11 +25,11 @@ function calculateCompoundingGrowth(days = 16, initial = null, rate = null, star
     }
     const riskPercentage = accountRisk / 100;
     let compound = initial ?? initialCapital;
-    let resultsHtml = '<h3>Results:</h3>';
+    let resultsHtml = '<div class="text-container"><h3>Results:</h3></div>';
     for (let i = startingDay; i < startingDay + days; i++) {
         let profitPerTrade = compound * riskPercentage;
         compound += profitPerTrade;
-        resultsHtml += `<p>Day ${i}: $${compound.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>`;
+        resultsHtml += `<p class="text-container">Day ${i}: $${compound.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>`;
     }
     document.getElementById('results').innerHTML = resultsHtml;
     document.getElementById('results').innerHTML += `
@@ -85,20 +85,20 @@ function calculateFixedGrowth() {
     const profitPerYear = profitPerMonth * endOfYear;
 
     let resultsHtml = `
-        <p>Initial Trading Capital: $${initialCapital.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>
-        <p>My account risk is: ${accountRisk.toLocaleString('en-US', { maximumFractionDigits: 2 })}%</p>
-        <p>Capital invested per month: $${initialCapital.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>
-        <p>Approximate profit accumulated: $${profitPerMonth.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>
+        <p class="text-container">Initial Trading Capital: $${initialCapital.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>
+        <p class="text-container">My account risk is: ${accountRisk.toLocaleString('en-US', { maximumFractionDigits: 2 })}%</p>
+        <p class="text-container">Capital invested per month: $${initialCapital.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>
+        <p class="text-container">Approximate profit accumulated: $${profitPerMonth.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>
     `;
 
     let compound = initialCapital;
     for (let i = 1; i <= endOfYear; i++) {
         compound += profitPerMonth;
         if (i < 12) {
-            resultsHtml += `<p>Total Account in Month ${i}: $${compound.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>`;
+            resultsHtml += `<p class="text-container">Total Account in Month ${i}: $${compound.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>`;
         } else {
-            resultsHtml += `<p>Total Money in the Account at Year End: $${compound.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>`;
-            resultsHtml += `<p>Total Profit for the Year: $${(compound - initialCapital).toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>`;
+            resultsHtml += `<p class="text-container">Total Money in the Account at Year End: $${compound.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>`;
+            resultsHtml += `<p class="text-container">Total Profit for the Year: $${(compound - initialCapital).toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>`;
         }
     }
 
@@ -124,8 +124,8 @@ function calculateDrawdown() {
     const accountRisk = (desiredProfit / capital) * 100;
     const totalDrawdownPips = (capital / desiredProfit) * 10;
     document.getElementById('results').innerHTML = `
-        <p>Risk: ${accountRisk.toFixed(2)}%</p>
-        <p>Maximum Drawdown: ${totalDrawdownPips.toFixed(2)} pips</p>
+        <p class="text-container">Risk: ${accountRisk.toFixed(2)}%</p>
+        <p class="text-container">Maximum Drawdown: ${totalDrawdownPips.toFixed(2)} pips</p>
     `;
 }
 
