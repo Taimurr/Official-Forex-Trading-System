@@ -8,9 +8,9 @@ function closeModal() {
 
 function showCompoundingForm() {
     document.getElementById('formContainer').innerHTML = `
-        <h2>Compounding Capital Strategy</h2>
-        <div><label>Enter your Initial Trading Capital ($): <input type="number" id="initialCapital" required></label></div>
-        <div><label>Enter your Account Risk (%): <input type="number" id="accountRisk" required></label></div>
+        <h2 class="text-container">Compounding Capital Strategy</h2>
+        <div class="text-container"><label>Enter your Initial Trading Capital ($): <input type="number" id="initialCapital" required></label></div>
+        <div class="text-container"><label>Enter your Account Risk (%): <input type="number" id="accountRisk" required></label></div>
         <button class="btn" onclick="calculateCompoundingGrowth()">Calculate</button>
     `;
     document.getElementById('results').innerHTML = ''; // Clear previous results
@@ -60,9 +60,9 @@ function extendCalculation(compound, rate, currentDay) {
 
 function showFixedGrowthForm() {
     document.getElementById('formContainer').innerHTML = `
-        <h2>Fixed Growth Strategy</h2>
-        <div><label>Enter your Initial Trading Capital ($): <input type="number" id="initialCapitalFixed" required></label></div>
-        <div><label>Enter your Account Risk (%): <input type="number" id="accountRiskFixed" required></label></div>
+        <h2 class="text-container">Fixed Growth Strategy</h2>
+        <div class="text-container"><label>Enter your Initial Trading Capital ($): <input type="number" id="initialCapitalFixed" required></label></div>
+        <div class="text-container"><label>Enter your Account Risk (%): <input type="number" id="accountRiskFixed" required></label></div>
         <button class="btn" onclick="calculateFixedGrowth()">Calculate</button>
     `;
     document.getElementById('results').innerHTML = ''; // Clear previous results
@@ -107,9 +107,9 @@ function calculateFixedGrowth() {
 
 function showDrawdownCalculator() {
     document.getElementById('formContainer').innerHTML = `
-        <h2>Drawdown Calculator</h2>
-        <div><label>Enter your Trading Capital ($): <input type="number" id="tradingCapital" required></label></div>
-        <div><label>Enter your Desired Profit ($) at 10 pips: <input type="number" id="desiredProfit" required></label></div>
+        <h2 class="text-container">Drawdown Calculator</h2>
+        <div class="text-container"><label>Enter your Trading Capital ($): <input type="number" id="tradingCapital" required></label></div>
+        <div class="text-container"><label>Enter your Desired Profit ($) at 10 pips: <input type="number" id="desiredProfit" required></label></div>
         <button class="btn" onclick="calculateDrawdown()">Calculate</button>
     `;
 }
