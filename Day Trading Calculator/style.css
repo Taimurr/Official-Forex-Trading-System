@@ -1,4 +1,5 @@
 
+
 /* General body and HTML styles */
 body, html {
     margin: 0;
@@ -7,7 +8,7 @@ body, html {
     font-family: 'Poppins', sans-serif;
     color: #f4f4f4;
     background-color: #2a3a59;
-    background-image: url('bg.png'); /* Path to your background image */
+    background-image: url('bg.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -131,4 +132,12 @@ body, html {
     display: block;
     font-size: 16px;
     color: #ffffff;
+}
+
+/* Text container styling */
+.text-container {
+    background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
+    padding: 10px;
+    border-radius: 10px; /* Curvy border */
+    margin-bottom: 10px;
 }
