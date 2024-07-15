@@ -16,6 +16,58 @@ function showCompoundingForm() {
     document.getElementById('results').innerHTML = ''; // Clear previous results
 }
 
+function calculateCompoundingGrowth() {
+    const initialCapital = parseFloat(document.getElementById('initialCapital').value);
+    const accountRisk = parseFloat(document.getElementById('accountRisk').value);
+    if (isNaN(initialCapital) || isNaN(accountRisk)) {
+        alert('Please enter valid numbers for both fields.');
+        return;
+    }
+    const riskPercentage = accountRisk / 100;
+    let compound = initialCapital;
+    let resultsHtml = '<div class="text-container"><h3>Results:</h3></div>';
+    for (let i = 1; i <= 10; i++) { // Calculate for 10 days as an example
+        let profitPerTrade = compound * riskPercentage;
+        compound += profitPerTrade;
+        resultsHtml += `<p class="text-container">Day ${i}: $${compound.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>`;
+    }
+    document.getElementById('results').innerHTML = resultsHtml;
+}
+
+function showFixedGrowthForm() {
+    document.getElementById('formContainer').innerHTML = `
+        <h2 class="text-container">Fixed Growth Strategy</h2>
+        <div class="text-container"><label>Enter your Initial Trading Capital ($): <input type="number" id="initialCapitalFixed" required></label></div>
+        <div class="text-container"><label>Enter your Account Risk (%): <input type="number" id="accountRiskFixed" required></label></div>
+        <button class="btn" onclick="calculateFixedGrowth()">Calculate</button>
+    `;
+    document.getElementById('results').innerHTML = ''; // Clear previous results
+}
+
+function calculateFixedGrowth() {
+    const initialCapital = parseFloat(document.getElementById('initialCapitalFixed').value);
+    const accountRisk = parseFloat(document.getElementById('accountRiskFixed').value);
+    if (isNaN(initialCapital) || isNaN(accountRisk)) {
+        alert('Please enter valid numbers for both fields.');
+        return;
+    }
+    const riskPercentage = accountRisk / 100;
+    const endOfMonth = 16; // Assuming 16 trading days in a month
+    const endOfYear = 12; // Number of months in a year
+    const profitPerTrade = initialCapital * riskPercentage;
+    const profitPerMonth = profitPerTrade * endOfMonth;
+    const profitPerYear = profitPerMonth * endOfYear;
+
+    let resultsHtml = `
+        <p class="text-container">Initial Trading Capital: $${initialCapital.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>
+        <p class="text-container">Account Risk: ${accountRisk.toLocaleString('en-US', { maximumFractionDigits: 2 })}%</p>
+        <p class="text-container">Approximate Profit Per Month: $${profitPerMonth.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>
+        <p class="text-container">Approximate Profit Per Year: $${profitPerYear.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>
+    `;
+
+    document.getElementById('results').innerHTML = resultsHtml;
+}
+
 function showDrawdownCalculator() {
     document.getElementById('formContainer').innerHTML = `
         <h2 class="text-container">Drawdown Calculator</h2>
@@ -29,6 +81,21 @@ function showDrawdownCalculator() {
             <input type="number" id="desiredProfit" required>
         </div>
         <button class="btn" onclick="calculateDrawdown()">Calculate</button>
+    `;
+}
+
+function calculateDrawdown() {
+    const capital = parseFloat(document.getElementById('tradingCapital').value);
+    const desiredProfit = parseFloat(document.getElementById('desiredProfit').value);
+    const pips = parseInt(document.getElementById('pips').value);
+    if (isNaN(capital) || isNaN(desiredProfit) || isNaN(pips)) {
+        alert('Please enter valid numbers for all fields.');
+        return;
+    }
+    const totalDrawdownPips = (capital / desiredProfit) * pips;
+    document.getElementById('results').innerHTML = `
+        <p class="text-container">Risk: ${(desiredProfit / capital * 100).toFixed(2)}%</p>
+        <p class="text-container">Maximum Drawdown: ${totalDrawdownPips.toFixed(2)} pips based on ${pips} pips selected</p>
     `;
 }
 
@@ -88,7 +155,21 @@ function calculateSystemPerformance() {
         return;
     }
     const performance = (currentCycleProfit / currentDrawdown) * 100;
-    document.getElementById('results').innerHTML += `<p class="text-container">System Performance: ${performance.toFixed(2)}%</p>`;
+    let message = '';
+    let color = 'black'; // Default color
+
+    if (performance <= 50) {
+        message = 'Set a Higher TP immediately!';
+        color = 'red'; // Red for urgent action needed
+    } else if (performance > 50 && performance < 70) {
+        message = 'Set a slightly higher TP';
+        color = 'orange'; // Orange for caution
+    } else if (performance >= 70) {
+        message = 'Good!';
+        color = 'green'; // Green for good performance
+    }
+
+    document.getElementById('results').innerHTML += `<p class="text-container" style="color: ${color};">System Performance: ${performance.toFixed(2)}% - ${message}</p>`;
 }
 
 function calculateTradingDays(startDate, endDate) {
@@ -102,41 +183,4 @@ function calculateTradingDays(startDate, endDate) {
         startDate = new Date(startDate.getTime() + dayMilliseconds);
     }
     return count;
-}
-function showFixedGrowthForm() {
-    document.getElementById('formContainer').innerHTML = `
-        <h2 class="text-container">Fixed Growth Strategy</h2>
-        <div class="text-container">
-            <label>Enter your Initial Trading Capital ($): <input type="number" id="initialCapitalFixed" required></label>
-        </div>
-        <div class="text-container">
-            <label>Enter your Account Risk (%): <input type="number" id="accountRiskFixed" required></label>
-        </div>
-        <button class="btn" onclick="calculateFixedGrowth()">Calculate</button>
-    `;
-    document.getElementById('results').innerHTML = ''; // Clear previous results
-}
-
-function calculateFixedGrowth() {
-    const initialCapital = parseFloat(document.getElementById('initialCapitalFixed').value);
-    const accountRisk = parseFloat(document.getElementById('accountRiskFixed').value);
-    if (isNaN(initialCapital) || isNaN(accountRisk)) {
-        alert('Please enter valid numbers for both fields.');
-        return;
-    }
-    const riskPercentage = accountRisk / 100;
-    const endOfMonth = 16; // Assuming 16 trading days in a month
-    const endOfYear = 12; // Number of months in a year
-    const profitPerTrade = initialCapital * riskPercentage;
-    const profitPerMonth = profitPerTrade * endOfMonth;
-    const profitPerYear = profitPerMonth * endOfYear;
-
-    let resultsHtml = `
-        <p class="text-container">Initial Trading Capital: $${initialCapital.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>
-        <p class="text-container">Account Risk: ${accountRisk.toLocaleString('en-US', { maximumFractionDigits: 2 })}%</p>
-        <p class="text-container">Approximate Profit Per Month: $${profitPerMonth.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>
-        <p class="text-container">Approximate Profit Per Year: $${profitPerYear.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>
-    `;
-
-    document.getElementById('results').innerHTML = resultsHtml;
 }
