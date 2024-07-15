@@ -10,7 +10,7 @@ body, html {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    overflow-x: hidden; /* Prevent horizontal overflow */
+    overflow-x: hidden;
 }
 
 /* Container styling */
@@ -27,11 +27,11 @@ body, html {
     background-color: #dba959;
     color: #2a3a59;
     border: none;
-    padding: 20px 40px;
+    padding: 12px 30px;
     margin: 10px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 18px;
     font-family: 'Poppins', sans-serif;
     transition: transform 0.3s, box-shadow 0.3s;
     animation: buttonFadeIn 1.5s ease-in-out;
@@ -69,11 +69,6 @@ body, html {
     animation: bounceInDown 1s, fadeIn 2s;
 }
 
-.logo {
-    max-width: 200px;
-    margin-bottom: 20px;
-}
-
 .close {
     color: #aaa;
     float: right;
@@ -88,7 +83,46 @@ body, html {
     cursor: pointer;
 }
 
-/* Keyframes for bounce animation */
+/* Input and Label Styling */
+input[type="number"],
+input[type="date"],
+select {
+    width: 80%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    background-color: #334670;
+    color: #fff;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+}
+
+input[type="number"]:focus,
+input[type="date"]:focus,
+select:focus {
+    border-color: #dba959;
+    box-shadow: 0 0 8px rgba(219,169,89, 0.8);
+}
+
+label {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 500;
+    margin: 5px 0;
+    display: block;
+}
+
+.text-container {
+    background-color: rgba(42, 58, 89, 0.9);
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Keyframes and animations */
 @keyframes bounceInDown {
     0%, 60%, 75%, 90%, 100% {
         transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
@@ -132,25 +166,4 @@ body, html {
 @keyframes buttonFadeIn {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
-/* Form styling */
-#formContainer div {
-    margin-bottom: 10px;
-    animation: fadeIn 1s ease-in-out;
-}
-
-#formContainer label {
-    display: block;
-    font-size: 16px;
-    color: #ffffff;
-}
-
-/* Text container styling */
-.text-container {
-    background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
-    padding: 10px;
-    border-radius: 10px; /* Curvy border */
-    margin-bottom: 10px;
-    animation: fadeIn 1s ease-in-out;
 }
