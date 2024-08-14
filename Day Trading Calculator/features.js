@@ -12,8 +12,9 @@ function showCompoundingForm() {
         <div class="text-container"><label>Enter your Initial Trading Capital ($): <input type="number" id="initialCapital" required></label></div>
         <div class="text-container"><label>Enter your Account Risk (%): <input type="number" id="accountRisk" required></label></div>
         <button class="btn" onclick="calculateCompoundingGrowth()">Calculate</button>
+        <button class="btn clear-btn" onclick="clearResults()">Clear</button>
     `;
-    document.getElementById('results').innerHTML = ''; // Clear previous results
+    clearResults();
 }
 
 function calculateCompoundingGrowth() {
@@ -31,6 +32,7 @@ function calculateCompoundingGrowth() {
         compound += profitPerTrade;
         resultsHtml += `<p class="text-container">Day ${i}: $${compound.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>`;
     }
+    resultsHtml += '<button class="btn clear-btn" onclick="clearResults()">Clear</button>';
     document.getElementById('results').innerHTML = resultsHtml;
 }
 
@@ -40,8 +42,9 @@ function showFixedGrowthForm() {
         <div class="text-container"><label>Enter your Initial Trading Capital ($): <input type="number" id="initialCapitalFixed" required></label></div>
         <div class="text-container"><label>Enter your Account Risk (%): <input type="number" id="accountRiskFixed" required></label></div>
         <button class="btn" onclick="calculateFixedGrowth()">Calculate</button>
+        <button class="btn clear-btn" onclick="clearResults()">Clear</button>
     `;
-    document.getElementById('results').innerHTML = ''; // Clear previous results
+    clearResults();
 }
 
 function calculateFixedGrowth() {
@@ -64,7 +67,7 @@ function calculateFixedGrowth() {
         <p class="text-container">Approximate Profit Per Month: $${profitPerMonth.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>
         <p class="text-container">Approximate Profit Per Year: $${profitPerYear.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>
     `;
-
+    resultsHtml += '<button class="btn clear-btn" onclick="clearResults()">Clear</button>';
     document.getElementById('results').innerHTML = resultsHtml;
 }
 
@@ -81,6 +84,7 @@ function showDrawdownCalculator() {
             <input type="number" id="desiredProfit" required>
         </div>
         <button class="btn" onclick="calculateDrawdown()">Calculate</button>
+        <button class="btn clear-btn" onclick="clearResults()">Clear</button>
     `;
 }
 
@@ -93,10 +97,12 @@ function calculateDrawdown() {
         return;
     }
     const totalDrawdownPips = (capital / desiredProfit) * pips;
-    document.getElementById('results').innerHTML = `
+    let resultsHtml = `
         <p class="text-container">Risk: ${(desiredProfit / capital * 100).toFixed(2)}%</p>
         <p class="text-container">Maximum Drawdown: ${totalDrawdownPips.toFixed(2)} pips based on ${pips} pips selected</p>
     `;
+    resultsHtml += '<button class="btn clear-btn" onclick="clearResults()">Clear</button>';
+    document.getElementById('results').innerHTML = resultsHtml;
 }
 
 function showSystemHealthChecker() {
@@ -104,7 +110,7 @@ function showSystemHealthChecker() {
         <h2 class="text-container">System Health Checker</h2>
         <div class="text-container">
             <label>Current Drawdown ($): <input type="number" id="currentDrawdown" required></label>
-            <label>Current Account Balance ($): <input type="number" id="currentBalance" required></label>
+            <label>Account Balance ($): <input type="number" id="currentBalance" required></label>
             <button class="btn" onclick="calculateCurrentDrawdownRate()">Calculate Drawdown Rate</button>
         </div>
         <div class="text-container">
@@ -117,8 +123,9 @@ function showSystemHealthChecker() {
             <label>Current Drawdown ($): <input type="number" id="performanceDrawdown" required></label>
             <button class="btn" onclick="calculateSystemPerformance()">Calculate System Performance</button>
         </div>
+        <button class="btn clear-btn" onclick="clearResults()">Clear</button>
     `;
-    document.getElementById('results').innerHTML = ''; // Clear previous results
+    clearResults();
 }
 
 function calculateCurrentDrawdownRate() {
@@ -129,7 +136,26 @@ function calculateCurrentDrawdownRate() {
         return;
     }
     const rate = (drawdown / balance) * 100;
-    document.getElementById('results').innerHTML = `<p class="text-container">Current Drawdown Rate: ${rate.toFixed(2)}%</p>`;
+    let color = 'black'; // Default color
+    let message = '';
+
+    if (rate > 100) {
+        color = 'red';
+        message = 'HALT! Set TP to 100 pips immediately!';
+    } else if (rate > 70) {
+        color = 'red';
+        message = 'Set TP to 15 pips!';
+    } else if (rate > 60 && rate <= 70) {
+        color = 'orange';
+        message = 'Set TP to 12.5 pips!';
+    } else if (rate <= 60) {
+        color = 'green';
+        message = 'Good, stay at 10 pips TP!';
+    }
+
+    let resultsHtml = `<p class="text-container" style="color: ${color};">Current Drawdown Rate: ${rate.toFixed(2)}% - ${message}</p>`;
+    resultsHtml += '<button class="btn clear-btn" onclick="clearResults()">Clear</button>';
+    document.getElementById('results').innerHTML = resultsHtml;
 }
 
 function calculateOverallDrawdownConversionRate() {
@@ -144,7 +170,9 @@ function calculateOverallDrawdownConversionRate() {
     const daysPassed = calculateTradingDays(startDate, endDate);
     const conversionRate = (counterDays / daysPassed) * 100;
 
-    document.getElementById('results').innerHTML += `<p class="text-container">Overall Drawdown Conversion Rate: ${conversionRate.toFixed(2)}%</p>`;
+    let resultsHtml = `<p class="text-container">Overall Drawdown Conversion Rate: ${conversionRate.toFixed(2)}%</p>`;
+    resultsHtml += '<button class="btn clear-btn" onclick="clearResults()">Clear</button>';
+    document.getElementById('results').innerHTML = resultsHtml;
 }
 
 function calculateSystemPerformance() {
@@ -169,7 +197,9 @@ function calculateSystemPerformance() {
         color = 'green'; // Green for good performance
     }
 
-    document.getElementById('results').innerHTML += `<p class="text-container" style="color: ${color};">System Performance: ${performance.toFixed(2)}% - ${message}</p>`;
+    let resultsHtml = `<p class="text-container" style="color: ${color};">System Performance: ${performance.toFixed(2)}% - ${message}</p>`;
+    resultsHtml += '<button class="btn clear-btn" onclick="clearResults()">Clear</button>';
+    document.getElementById('results').innerHTML = resultsHtml;
 }
 
 function calculateTradingDays(startDate, endDate) {
@@ -183,4 +213,78 @@ function calculateTradingDays(startDate, endDate) {
         startDate = new Date(startDate.getTime() + dayMilliseconds);
     }
     return count;
+}
+
+function showMoneyBudgetingForm() {
+    document.getElementById('formContainer').innerHTML = `
+        <h2 class="text-container">Money Budgeting</h2>
+        <div class="text-container">
+            <label>Enter your Monthly Profits ($): <input type="number" id="monthlyProfits" required></label>
+        </div>
+        <button class="btn" onclick="calculateBudget()">Calculate</button>
+        <button class="btn clear-btn" onclick="clearResults()">Clear</button>
+    `;
+    clearResults();
+}
+
+function calculateBudget() {
+    const profits = parseFloat(document.getElementById('monthlyProfits').value);
+    if (isNaN(profits)) {
+        alert('Please enter a valid number for profits.');
+        return;
+    }
+    const needs = profits * 0.50;
+    const wants = profits * 0.30;
+    const savings = profits * 0.20;
+
+    const resultsHtml = `
+        <p class="text-container">Needs (50%): $${needs.toLocaleString('en-US', {maximumFractionDigits: 2})}</p>
+        <p class="text-container">Wants (30%): $${wants.toLocaleString('en-US', {maximumFractionDigits: 2})}</p>
+        <p class="text-container">Savings (20%): $${savings.toLocaleString('en-US', {maximumFractionDigits: 2})}</p>
+        <canvas id="budgetChart" width="300" height="300"></canvas>
+    `;
+    document.getElementById('results').innerHTML = resultsHtml;
+
+    const ctx = document.getElementById('budgetChart').getContext('2d');
+    const budgetChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Needs', 'Wants', 'Savings'],
+            datasets: [{
+                label: 'Budget Distribution',
+                data: [needs, wants, savings],
+                backgroundColor: ['#00c6ff', '#ff5ecd', '#c012ff'],
+                borderColor: ['#2a3a59'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#f4f4f4',
+                        font: {
+                            size: 14 // Increased font size for better readability
+                        }
+                    }
+                },
+                tooltip: {
+                    enabled: true,
+                    bodyFont: {
+                        size: 14 // Increase tooltip text size
+                    }
+                }
+            }
+        }
+    });
+    
+    
+}
+
+
+
+function clearResults() {
+    document.getElementById('results').innerHTML = '';
 }
