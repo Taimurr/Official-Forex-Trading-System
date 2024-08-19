@@ -110,7 +110,7 @@ function showSystemHealthChecker() {
         <h2 class="text-container">System Health Checker</h2>
         <div class="text-container">
             <label>Current Drawdown ($): <input type="number" id="currentDrawdown" required></label>
-            <label>Account Balance ($): <input type="number" id="currentBalance" required></label>
+            <label>Initial Account Equity ($): <input type="number" id="currentBalance" required></label>
             <button class="btn" onclick="calculateCurrentDrawdownRate()">Calculate Drawdown Rate</button>
         </div>
         <div class="text-container">
@@ -139,19 +139,29 @@ function calculateCurrentDrawdownRate() {
     let color = 'black'; // Default color
     let message = '';
 
-    if (rate > 100) {
-        color = 'red';
-        message = 'HALT! Set TP to 100 pips immediately!';
-    } else if (rate > 70) {
-        color = 'red';
-        message = 'Set TP to 15 pips!';
-    } else if (rate > 60 && rate <= 70) {
+    if (rate > 20){
+        const bonusFact = 100/2.5
         color = 'orange';
-        message = 'Set TP to 12.5 pips!';
-    } else if (rate <= 60) {
-        color = 'green';
-        message = 'Good, stay at 10 pips TP!';
+        message = 'Set TP to 15 pips || Reward = 3%';
     }
+
+    else if (rate <= 20){
+        color = 'green';
+        message = 'System is running smoothly || Reward = 2%';
+    }
+    // if (rate > 100) {
+    //     color = 'red';
+    //     message = 'HALT! Set TP to 100 pips immediately!';
+    // } else if (rate > 70) {
+    //     color = 'red';
+    //     message = 'Set TP to 15 pips!';
+    // } else if (rate > 60 && rate <= 70) {
+    //     color = 'orange';
+    //     message = 'Set TP to 12.5 pips!';
+    // } else if (rate <= 60) {
+    //     color = 'green';
+    //     message = 'Good, stay at 10 pips TP!';
+    // }
 
     let resultsHtml = `<p class="text-container" style="color: ${color};">Current Drawdown Rate: ${rate.toFixed(2)}% - ${message}</p>`;
     resultsHtml += '<button class="btn clear-btn" onclick="clearResults()">Clear</button>';
