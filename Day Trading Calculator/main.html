@@ -19,22 +19,21 @@
 
     <div class="container">
         <header>
-            <img src="bl.png" alt="Alpha Arc Capital Logo" style="max-width: 200px;">
-            <h1>Forex Trading Calculator</h1>
-            <p>This calculator is designed for systems that trade based on probability and statistics to improve risk management techniques. All profits are calculated at 10 pips Take Profit (TP) in EUR/USD.</p>
+            <img src="bl.png" alt="Alpha Arc Capital Logo" class="logo">
+            <h1>Investor Portal</h1>
+            <p>Welcome to the Investor Portal</p>
+            <p>Designed for EUR/USD</p>
         </header>
-        <nav>
-            <button class="btn" onclick="showCompoundingForm()">Compounding Strategy</button>
-            <button class="btn" onclick="showFixedGrowthForm()">Fixed Growth Strategy</button>
-            <button class="btn" onclick="showDrawdownCalculator()">Drawdown Calculator</button>
+        <nav class="nav-buttons">
+            <button class="btn" onclick="showFixedGrowthForm()">Growth Projections</button>
+            <button class="btn" onclick="showDrawdownCalculator()">Drawdown Room Calculator</button>
             <button class="btn" onclick="showSystemHealthChecker()">System Health Checker</button>
             <button class="btn" onclick="showMoneyBudgetingForm()">Money Budgeting</button>
         </nav>
-        <div id="formContainer"></div>
-        <div id="results"></div>
+        <div id="formContainer" class="form-container"></div>
+        <div id="results" class="results-container"></div>
     </div>
     <script src="features.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </body>
 </html>
