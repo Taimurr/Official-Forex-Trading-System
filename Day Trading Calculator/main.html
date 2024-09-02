@@ -10,8 +10,9 @@
     <div id="welcomeModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <img src="bl.png" alt="Alpha Arc Capital Logo" style="max-width: 200px;">
-            <h1>Welcome to the Forex Trading Calculator</h1>
+            <img src="bl.png" alt="Alpha Arc Capital Logo" class="popup-logo">
+            <h1>Alpha Arc Capital - Investor Portal</h1>
+            <p>Welcome to the Forex Trading Calculator</p>
             <p>by Taimur Rizwan</p>
             <button class="btn" onclick="closeModal()">Enter</button>
         </div>
@@ -20,15 +21,25 @@
     <div class="container">
         <header>
             <img src="bl.png" alt="Alpha Arc Capital Logo" class="logo">
-            <h1>Investor Portal</h1>
+            <h1 class="gold-glow">Investor Portal</h1>
             <p>Welcome to the Investor Portal</p>
             <p>Designed for EUR/USD</p>
         </header>
         <nav class="nav-buttons">
-            <button class="btn" onclick="showFixedGrowthForm()">Growth Projections</button>
-            <button class="btn" onclick="showDrawdownCalculator()">Drawdown Room Calculator</button>
-            <button class="btn" onclick="showSystemHealthChecker()">System Health Checker</button>
-            <button class="btn" onclick="showMoneyBudgetingForm()">Money Budgeting</button>
+            <div class="button-group">
+                <h3 class="section-title">Strategy</h3>
+                <button class="btn" onclick="showHedgingCycleStrategy()">Hedging Cycle Strategy</button>
+                <button class="btn" onclick="showVisualStrategy()">Visual</button>
+                <button class="btn" onclick="showRiskManagement()">Layers of Risk Management</button>
+                <button class="btn" onclick="showGlossary()">Glossary</button>
+            </div>
+            <div class="button-group">
+                <h3 class="section-title">Calculator</h3>
+                <button class="btn" onclick="showFixedGrowthForm()">Growth Projections</button>
+                <button class="btn" onclick="showSystemHealthChecker()">System Health Checker</button>
+                <button class="btn" onclick="showDrawdownCalculator()">Drawdown Room Calculator</button>
+                <button class="btn" onclick="showMoneyBudgetingForm()">Money Budgeting</button>
+            </div>
         </nav>
         <div id="formContainer" class="form-container"></div>
         <div id="results" class="results-container"></div>
