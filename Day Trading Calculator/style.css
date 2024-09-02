@@ -1,10 +1,13 @@
+/* Importing a more sophisticated font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
 /* General body and HTML styles */
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: 'Poppins', sans-serif;
-    color: #f4f4f4;
+    font-family: 'Montserrat', sans-serif; /* Updated font */
+    color: #e0e0e0; /* Softer color for a professional look */
     background-color: #1a2238;
     background-image: url('bg.png');
     background-size: cover;
@@ -16,62 +19,152 @@ body, html {
 
 /* Enhanced title styling */
 h1 {
-    font-size: 2.5em;
+    font-size: 2.5em; /* Slightly smaller than before */
     color: #ffffff;
-    text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 5px rgba(0,0,0,0.7);
+    text-align: center;
+    margin-bottom: 0.5em;
+    font-weight: 600; /* Medium boldness for a professional look */
+    text-transform: uppercase; /* Capitalize for a professional look */
+    text-decoration: underline; /* Underline to add emphasis */
+}
+
+/* Subheader and other text styling */
+h2, p, label {
+    font-size: 1.1em; /* Slightly reduced size */
+    color: #f0f0f0;
+    font-weight: 600; /* Medium boldness */
+    text-transform: uppercase; /* Capitalize all text */
+    text-align: center;
+}
+
+/* Logo styling */
+.logo {
+    max-width: 150px;
+    margin: 0 auto;
+    display: block;
 }
 
 /* Container styling */
 .container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 50px auto;
     padding: 20px;
     text-align: center;
-    background-color: rgba(26, 34, 56, 0.9);
-    border-radius: 15px;
-    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
-    overflow: hidden;
+    background-color: rgba(26, 34, 56, 0.95);
+    border-radius: 20px;
+    box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.6);
 }
 
-/* Button styling with neon effects */
-.btn, .clear-btn {
-    background: linear-gradient(145deg, #ff8a00, #e52e71);
+/* Navigation button styling */
+.nav-buttons {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+/* Updated button styling with blue and gold gradient */
+.btn {
+    background: linear-gradient(145deg, #1e3c72, #2a5298); /* Blue gradient start */
     color: #ffffff;
     border: none;
-    padding: 15px 35px;
-    margin: 15px;
+    padding: 12px 30px; /* Slightly reduced padding for a sleeker look */
+    margin: 10px;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 16px;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
     box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    flex: 1 1 45%;
+    max-width: 200px;
+    font-weight: 600; /* Medium boldness */
+    text-transform: uppercase; /* Capitalized text */
 }
 
-.btn:hover, .clear-btn:hover {
-    background: linear-gradient(145deg, #ff512f, #dd2476);
-    box-shadow: 0 6px 15px rgba(255,105,180,0.85);
+.btn:hover {
+    background: linear-gradient(145deg, #f0b429, #fcdf8a); /* Gold gradient on hover */
+    box-shadow: 0 6px 15px rgba(240, 180, 41, 0.85);
 }
 
-.btn:active, .clear-btn:active {
+.btn:active {
     transform: scale(0.98);
 }
 
-/* Input styling with neon glow */
+/* Form container styling */
+.form-container {
+    margin: 20px 0;
+    text-align: left;
+}
+
+/* Input styling */
 input[type="number"], input[type="date"], select {
-    width: 90%;
-    padding: 12px;
-    margin-top: 8px;
+    width: 100%;
+    padding: 12px; /* Slightly reduced padding */
+    margin: 10px 0;
     border-radius: 8px;
     border: 2px solid #ffa34d;
     background-color: #2b334e;
-    color: #f4f4f4;
-    font-size: 16px;
+    color: #ffffff;
+    font-size: 14px; /* Slightly smaller font size */
     outline: none;
-    box-shadow: 0 0 5px rgba(255, 105, 135, 0.75);
+    box-shadow: 0 0 5px rgba(240, 180, 41, 0.75); /* Softer glow */
+    font-weight: 600; /* Medium boldness */
 }
 
 input[type="number"]:focus, input[type="date"]:focus, select:focus {
-    box-shadow: 0 0 12px rgba(255, 105, 180, 0.95);
+    box-shadow: 0 0 12px rgba(240, 180, 41, 0.95); /* Softer glow on focus */
+}
+
+/* Results container styling */
+.results-container {
+    margin-top: 20px;
+}
+
+/* Modal styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+    position: relative;
+    background-color: #2a3a59;
+    margin: 10% auto;
+    padding: 20px; /* Reduced padding */
+    border: 2px solid #dba959;
+    width: 50%; /* Reduced width for a tighter appearance */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 1s ease-in-out;
+}
+
+.modal-content h1 {
+    font-size: 1.8em; /* Smaller font size for pop-up title */
+}
+
+.modal-content p {
+    font-size: 1.2em; /* Reduced size for pop-up text */
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #ccc;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #fff;
 }
 
 /* Responsive adjustments */
@@ -83,50 +176,9 @@ input[type="number"]:focus, input[type="date"]:focus, select:focus {
     .modal-content {
         width: 90%;
     }
-}
 
-/* Adjustments for Pie Chart */
-#budgetChart {
-    width: 200px !important;
-    height: 200px !important;
-    margin: 20px auto;
-}
-/* Modal styling adjustments */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.6); /* Dim background more visibly */
-}
-
-.modal-content {
-    position: relative;
-    background-color: #2a3a59;
-    margin: 15% auto; /* Adjusted for better centering */
-    padding: 20px;
-    border: 2px solid #dba959;
-    width: 50%; /* Adjust width for better appearance */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    animation: fadeIn 1s ease-in-out;
-}
-
-.close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    color: #ccc;
-    font-size: 30px;
-    font-weight: bold;
-}
-
-.close:hover {
-    color: #fff;
-    text-decoration: none;
-    cursor: pointer;
+    .btn {
+        flex: 1 1 100%;
+        max-width: none;
+    }
 }
