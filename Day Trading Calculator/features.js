@@ -6,43 +6,21 @@ function closeModal() {
     document.getElementById('welcomeModal').style.display = 'none';
 }
 
-function showCompoundingForm() {
-    document.getElementById('formContainer').innerHTML = `
-        <h2 class="text-container">Compounding Capital Strategy</h2>
-        <div class="text-container"><label>Enter your Initial Trading Capital ($): <input type="number" id="initialCapital" required></label></div>
-        <div class="text-container"><label>Enter your Account Risk (%): <input type="number" id="accountRisk" required></label></div>
-        <button class="btn" onclick="calculateCompoundingGrowth()">Calculate</button>
-        <button class="btn clear-btn" onclick="clearResults()">Clear</button>
-    `;
-    clearResults();
-}
-
-function calculateCompoundingGrowth() {
-    const initialCapital = parseFloat(document.getElementById('initialCapital').value);
-    const accountRisk = parseFloat(document.getElementById('accountRisk').value);
-    if (isNaN(initialCapital) || isNaN(accountRisk)) {
-        alert('Please enter valid numbers for both fields.');
-        return;
-    }
-    const riskPercentage = accountRisk / 100;
-    let compound = initialCapital;
-    let resultsHtml = '<div class="text-container"><h3>Results:</h3></div>';
-    for (let i = 1; i <= 10; i++) { // Calculate for 10 days as an example
-        let profitPerTrade = compound * riskPercentage;
-        compound += profitPerTrade;
-        resultsHtml += `<p class="text-container">Day ${i}: $${compound.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>`;
-    }
-    resultsHtml += '<button class="btn clear-btn" onclick="clearResults()">Clear</button>';
-    document.getElementById('results').innerHTML = resultsHtml;
-}
-
 function showFixedGrowthForm() {
     document.getElementById('formContainer').innerHTML = `
-        <h2 class="text-container">Fixed Growth Strategy</h2>
-        <div class="text-container"><label>Enter your Initial Trading Capital ($): <input type="number" id="initialCapitalFixed" required></label></div>
-        <div class="text-container"><label>Enter your Account Risk (%): <input type="number" id="accountRiskFixed" required></label></div>
-        <button class="btn" onclick="calculateFixedGrowth()">Calculate</button>
-        <button class="btn clear-btn" onclick="clearResults()">Clear</button>
+        <h2>Growth Projections</h2>
+        <div class="form-group">
+            <label for="initialCapitalFixed">Enter your Initial Trading Capital ($):</label>
+            <input type="number" id="initialCapitalFixed" required>
+        </div>
+        <div class="form-group">
+            <label for="accountRiskFixed">Enter your Account Risk (%):</label>
+            <input type="number" id="accountRiskFixed" required>
+        </div>
+        <div class="form-actions">
+            <button class="btn" onclick="calculateFixedGrowth()">Calculate</button>
+            <button class="btn clear-btn" onclick="clearResults()">Clear</button>
+        </div>
     `;
     clearResults();
 }
@@ -62,10 +40,10 @@ function calculateFixedGrowth() {
     const profitPerYear = profitPerMonth * endOfYear;
 
     let resultsHtml = `
-        <p class="text-container">Initial Trading Capital: $${initialCapital.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>
-        <p class="text-container">Account Risk: ${accountRisk.toLocaleString('en-US', { maximumFractionDigits: 2 })}%</p>
-        <p class="text-container">Approximate Profit Per Month: $${profitPerMonth.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>
-        <p class="text-container">Approximate Profit Per Year: $${profitPerYear.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>
+        <p>Initial Trading Capital: $${initialCapital.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>
+        <p>Account Risk: ${accountRisk.toLocaleString('en-US', { maximumFractionDigits: 2 })}%</p>
+        <p>Approximate Profit Per Month: $${profitPerMonth.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>
+        <p>Approximate Profit Per Year: $${profitPerYear.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>
     `;
     resultsHtml += '<button class="btn clear-btn" onclick="clearResults()">Clear</button>';
     document.getElementById('results').innerHTML = resultsHtml;
@@ -73,19 +51,23 @@ function calculateFixedGrowth() {
 
 function showDrawdownCalculator() {
     document.getElementById('formContainer').innerHTML = `
-        <h2 class="text-container">Drawdown Calculator</h2>
-        <div class="text-container">
-            <label>Enter your Trading Capital ($): <input type="number" id="tradingCapital" required></label>
+        <h2>Drawdown Room Calculator</h2>
+        <div class="form-group">
+            <label for="tradingCapital">Enter your Trading Capital ($):</label>
+            <input type="number" id="tradingCapital" required>
         </div>
-        <div class="text-container">
-            <label>Enter your Desired Profit ($) at <select id="pips">
+        <div class="form-group">
+            <label for="pips">Enter your Desired Profit ($) at <select id="pips">
                 ${Array.from({length: 60}, (_, i) => `<option value="${i+1}">${i+1}</option>`).join('')}
             </select> pips:</label>
             <input type="number" id="desiredProfit" required>
         </div>
-        <button class="btn" onclick="calculateDrawdown()">Calculate</button>
-        <button class="btn clear-btn" onclick="clearResults()">Clear</button>
+        <div class="form-actions">
+            <button class="btn" onclick="calculateDrawdown()">Calculate</button>
+            <button class="btn clear-btn" onclick="clearResults()">Clear</button>
+        </div>
     `;
+    clearResults();
 }
 
 function calculateDrawdown() {
@@ -97,9 +79,11 @@ function calculateDrawdown() {
         return;
     }
     const totalDrawdownPips = (capital / desiredProfit) * pips;
+    const riskPercentage = (desiredProfit / capital * 100).toFixed(2);
+    
     let resultsHtml = `
-        <p class="text-container">Risk: ${(desiredProfit / capital * 100).toFixed(2)}%</p>
-        <p class="text-container">Maximum Drawdown: ${totalDrawdownPips.toFixed(2)} pips based on ${pips} pips selected</p>
+        <p>Risk: ${riskPercentage}%</p>
+        <p>Maximum Drawdown: ${totalDrawdownPips.toFixed(2)} pips based on ${pips} pips selected</p>
     `;
     resultsHtml += '<button class="btn clear-btn" onclick="clearResults()">Clear</button>';
     document.getElementById('results').innerHTML = resultsHtml;
@@ -107,23 +91,41 @@ function calculateDrawdown() {
 
 function showSystemHealthChecker() {
     document.getElementById('formContainer').innerHTML = `
-        <h2 class="text-container">System Health Checker</h2>
-        <div class="text-container">
-            <label>Current Drawdown ($): <input type="number" id="currentDrawdown" required></label>
-            <label>Initial Account Equity ($): <input type="number" id="currentBalance" required></label>
+        <h2>System Health Checker</h2>
+        <div class="form-group">
+            <label for="currentDrawdown">Current Drawdown ($):</label>
+            <input type="number" id="currentDrawdown" required>
+        </div>
+        <div class="form-group">
+            <label for="currentBalance">Initial Account Equity ($):</label>
+            <input type="number" id="currentBalance" required>
+        </div>
+        <div class="form-actions">
             <button class="btn" onclick="calculateCurrentDrawdownRate()">Calculate Drawdown Rate</button>
         </div>
-        <div class="text-container">
-            <label>Drawdown Trade's Date (YYYY/MM/DD): <input type="date" id="drawdownDate" required></label>
-            <label>Days Counter-Traded: <input type="number" id="counterTradedDays" required></label>
+        <div class="form-group">
+            <label for="drawdownDate">Drawdown Trade's Date (YYYY/MM/DD):</label>
+            <input type="date" id="drawdownDate" required>
+        </div>
+        <div class="form-group">
+            <label for="counterTradedDays">Days Counter-Traded:</label>
+            <input type="number" id="counterTradedDays" required>
+        </div>
+        <div class="form-actions">
             <button class="btn" onclick="calculateOverallDrawdownConversionRate()">Calculate Profit Conversion Rate</button>
         </div>
-        <div class="text-container">
-            <label>Current Cycle Profit ($): <input type="number" id="currentCycleProfit" required></label>
-            <label>Current Drawdown ($): <input type="number" id="performanceDrawdown" required></label>
-            <button class="btn" onclick="calculateSystemPerformance()">Calculate System Performance</button>
+        <div class="form-group">
+            <label for="currentCycleProfit">Current Cycle Profit ($):</label>
+            <input type="number" id="currentCycleProfit" required>
         </div>
-        <button class="btn clear-btn" onclick="clearResults()">Clear</button>
+        <div class="form-group">
+            <label for="performanceDrawdown">Current Drawdown ($):</label>
+            <input type="number" id="performanceDrawdown" required>
+        </div>
+        <div class="form-actions">
+            <button class="btn" onclick="calculateSystemPerformance()">Calculate System Performance</button>
+            <button class="btn clear-btn" onclick="clearResults()">Clear</button>
+        </div>
     `;
     clearResults();
 }
@@ -140,30 +142,16 @@ function calculateCurrentDrawdownRate() {
     let message = '';
 
     if (rate > 20){
-        const bonusFact = 100/2.5
         color = 'orange';
-        message = 'Set TP to 15 pips || Reward = 3%';
+        message = 'Set TP to 20 pips || Reward = 3%';
     }
 
     else if (rate <= 20){
         color = 'green';
         message = 'System is running smoothly || Reward = 2%';
     }
-    // if (rate > 100) {
-    //     color = 'red';
-    //     message = 'HALT! Set TP to 100 pips immediately!';
-    // } else if (rate > 70) {
-    //     color = 'red';
-    //     message = 'Set TP to 15 pips!';
-    // } else if (rate > 60 && rate <= 70) {
-    //     color = 'orange';
-    //     message = 'Set TP to 12.5 pips!';
-    // } else if (rate <= 60) {
-    //     color = 'green';
-    //     message = 'Good, stay at 10 pips TP!';
-    // }
 
-    let resultsHtml = `<p class="text-container" style="color: ${color};">Current Drawdown Rate: ${rate.toFixed(2)}% - ${message}</p>`;
+    let resultsHtml = `<p style="color: ${color};">Current Drawdown Rate: ${rate.toFixed(2)}% - ${message}</p>`;
     resultsHtml += '<button class="btn clear-btn" onclick="clearResults()">Clear</button>';
     document.getElementById('results').innerHTML = resultsHtml;
 }
@@ -180,7 +168,7 @@ function calculateOverallDrawdownConversionRate() {
     const daysPassed = calculateTradingDays(startDate, endDate);
     const conversionRate = (counterDays / daysPassed) * 100;
 
-    let resultsHtml = `<p class="text-container">Overall Drawdown Conversion Rate: ${conversionRate.toFixed(2)}%</p>`;
+    let resultsHtml = `<p>Overall Drawdown Conversion Rate: ${conversionRate.toFixed(2)}%</p>`;
     resultsHtml += '<button class="btn clear-btn" onclick="clearResults()">Clear</button>';
     document.getElementById('results').innerHTML = resultsHtml;
 }
@@ -207,7 +195,7 @@ function calculateSystemPerformance() {
         color = 'green'; // Green for good performance
     }
 
-    let resultsHtml = `<p class="text-container" style="color: ${color};">System Performance: ${performance.toFixed(2)}% - ${message}</p>`;
+    let resultsHtml = `<p style="color: ${color};">System Performance: ${performance.toFixed(2)}% - ${message}</p>`;
     resultsHtml += '<button class="btn clear-btn" onclick="clearResults()">Clear</button>';
     document.getElementById('results').innerHTML = resultsHtml;
 }
@@ -227,12 +215,15 @@ function calculateTradingDays(startDate, endDate) {
 
 function showMoneyBudgetingForm() {
     document.getElementById('formContainer').innerHTML = `
-        <h2 class="text-container">Money Budgeting</h2>
-        <div class="text-container">
-            <label>Enter your Monthly Profits ($): <input type="number" id="monthlyProfits" required></label>
+        <h2>Money Budgeting</h2>
+        <div class="form-group">
+            <label for="monthlyProfits">Enter your Cycle Profits ($):</label>
+            <input type="number" id="monthlyProfits" required>
         </div>
-        <button class="btn" onclick="calculateBudget()">Calculate</button>
-        <button class="btn clear-btn" onclick="clearResults()">Clear</button>
+        <div class="form-actions">
+            <button class="btn" onclick="calculateBudget()">Calculate</button>
+            <button class="btn clear-btn" onclick="clearResults()">Clear</button>
+        </div>
     `;
     clearResults();
 }
@@ -248,10 +239,10 @@ function calculateBudget() {
     const savings = profits * 0.20;
 
     const resultsHtml = `
-        <p class="text-container">Needs (50%): $${needs.toLocaleString('en-US', {maximumFractionDigits: 2})}</p>
-        <p class="text-container">Wants (30%): $${wants.toLocaleString('en-US', {maximumFractionDigits: 2})}</p>
-        <p class="text-container">Savings (20%): $${savings.toLocaleString('en-US', {maximumFractionDigits: 2})}</p>
-        <canvas id="budgetChart" width="300" height="300"></canvas>
+        <p>Needs (50%): $${needs.toLocaleString('en-US', {maximumFractionDigits: 2})}</p>
+        <p>Wants (30%): $${wants.toLocaleString('en-US', {maximumFractionDigits: 2})}</p>
+        <p>Savings (20%): $${savings.toLocaleString('en-US', {maximumFractionDigits: 2})}</p>
+        <canvas id="budgetChart" width="400" height="400"></canvas>
     `;
     document.getElementById('results').innerHTML = resultsHtml;
 
@@ -270,13 +261,13 @@ function calculateBudget() {
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,  // Ensure the chart maintains its aspect ratio
             plugins: {
                 legend: {
                     labels: {
                         color: '#f4f4f4',
                         font: {
-                            size: 14 // Increased font size for better readability
+                            size: 14 // Font size for better readability
                         }
                     }
                 },
@@ -289,11 +280,7 @@ function calculateBudget() {
             }
         }
     });
-    
-    
 }
-
-
 
 function clearResults() {
     document.getElementById('results').innerHTML = '';
