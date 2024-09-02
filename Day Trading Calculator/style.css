@@ -1,4 +1,4 @@
-/* Importing a more sophisticated font */
+/* Importing a sophisticated font */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 
 /* General body and HTML styles */
@@ -6,83 +6,101 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: 'Montserrat', sans-serif; /* Updated font */
-    color: #e0e0e0; /* Softer color for a professional look */
-    background-color: #1a2238;
+    font-family: 'Montserrat', sans-serif;
+    color: #e0e0e0;
+    background-color: #12192b;
     background-image: url('bg.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     overflow-x: hidden;
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
-/* Enhanced title styling */
-h1 {
-    font-size: 2.5em; /* Slightly smaller than before */
+/* Enhanced title styling with gold glow */
+h1.gold-glow {
+    font-size: 2.5em;
     color: #ffffff;
     text-align: center;
     margin-bottom: 0.5em;
-    font-weight: 600; /* Medium boldness for a professional look */
-    text-transform: uppercase; /* Capitalize for a professional look */
-    text-decoration: underline; /* Underline to add emphasis */
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-shadow: 0 0 10px gold, 0 0 20px gold;
 }
 
 /* Subheader and other text styling */
 h2, p, label {
-    font-size: 1.1em; /* Slightly reduced size */
+    font-size: 1.1em;
     color: #f0f0f0;
-    font-weight: 600; /* Medium boldness */
-    text-transform: uppercase; /* Capitalize all text */
+    font-weight: 600;
+    text-transform: uppercase;
     text-align: center;
 }
 
 /* Logo styling */
-.logo {
-    max-width: 150px;
-    margin: 0 auto;
+.logo, .popup-logo {
+    max-width: 200px;
+    margin: 0 auto 20px auto;
     display: block;
 }
 
 /* Container styling */
 .container {
-    max-width: 900px;
-    margin: 50px auto;
-    padding: 20px;
-    text-align: center;
-    background-color: rgba(26, 34, 56, 0.95);
+    max-width: 90%;
+    margin: auto;
+    padding: 40px 20px;
+    background: linear-gradient(to bottom, rgba(26, 34, 56, 0.95), rgba(26, 34, 56, 0.8));
     border-radius: 20px;
-    box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.6);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
 }
 
 /* Navigation button styling */
 .nav-buttons {
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
-    margin-bottom: 20px;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.button-group {
+    flex: 1 1 calc(50% - 20px); /* Adjusts to 50% width minus the gap */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.button-group:hover {
+    transform: scale(1.02);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 /* Updated button styling with blue and gold gradient */
 .btn {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
     background: linear-gradient(145deg, #1e3c72, #2a5298); /* Blue gradient start */
     color: #ffffff;
     border: none;
-    padding: 12px 30px; /* Slightly reduced padding for a sleeker look */
-    margin: 10px;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 16px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease;
     box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-    flex: 1 1 45%;
-    max-width: 200px;
-    font-weight: 600; /* Medium boldness */
-    text-transform: uppercase; /* Capitalized text */
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 .btn:hover {
     background: linear-gradient(145deg, #f0b429, #fcdf8a); /* Gold gradient on hover */
+    transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(240, 180, 41, 0.85);
 }
 
@@ -90,37 +108,35 @@ h2, p, label {
     transform: scale(0.98);
 }
 
-/* Form container styling */
-.form-container {
-    margin: 20px 0;
-    text-align: left;
-}
-
-/* Input styling */
-input[type="number"], input[type="date"], select {
-    width: 100%;
-    padding: 12px; /* Slightly reduced padding */
-    margin: 10px 0;
-    border-radius: 8px;
-    border: 2px solid #ffa34d;
-    background-color: #2b334e;
+/* Hedging Cycle Strategy Button Styling */
+.strategy-btn {
+    background: linear-gradient(145deg, #007ACC, #00C6FF); /* Blue gradient start */
     color: #ffffff;
-    font-size: 14px; /* Slightly smaller font size */
-    outline: none;
-    box-shadow: 0 0 5px rgba(240, 180, 41, 0.75); /* Softer glow */
-    font-weight: 600; /* Medium boldness */
+    border: none;
+    padding: 15px 35px;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    max-width: 300px;
+    margin: 10px auto;
 }
 
-input[type="number"]:focus, input[type="date"]:focus, select:focus {
-    box-shadow: 0 0 12px rgba(240, 180, 41, 0.95); /* Softer glow on focus */
+.strategy-btn:hover {
+    background: linear-gradient(145deg, #00A3FF, #4B9FFF); /* Light blue gradient on hover */
+    box-shadow: 0 8px 20px rgba(0, 162, 255, 0.75);
 }
 
-/* Results container styling */
-.results-container {
-    margin-top: 20px;
+.strategy-btn:active {
+    transform: scale(0.98);
 }
 
-/* Modal styling */
+/* Modal Styling */
 .modal {
     display: none;
     position: fixed;
@@ -130,27 +146,43 @@ input[type="number"]:focus, input[type="date"]:focus, select:focus {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.8); /* Darker background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
 }
 
 .modal-content {
     position: relative;
-    background-color: #2a3a59;
-    margin: 10% auto;
-    padding: 20px; /* Reduced padding */
+    background: linear-gradient(145deg, #1e3c72, #2a5298); /* Blend with the rest of the page */
+    padding: 30px;
     border: 2px solid #dba959;
-    width: 50%; /* Reduced width for a tighter appearance */
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 50%;
+    max-width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    text-align: center;
     animation: fadeIn 1s ease-in-out;
 }
 
 .modal-content h1 {
-    font-size: 1.8em; /* Smaller font size for pop-up title */
+    font-size: 1.8em; /* Reduced font size */
+    margin-bottom: 15px;
+    color: #FFD700;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px gold;
 }
 
 .modal-content p {
-    font-size: 1.2em; /* Reduced size for pop-up text */
+    font-size: 1em; /* Reduced font size */
+    color: #f0f0f0;
+    margin-bottom: 20px;
+}
+
+.popup-logo {
+    max-width: 150px; /* Slightly smaller to blend better */
+    margin-bottom: 15px;
 }
 
 .close {
@@ -158,7 +190,7 @@ input[type="number"]:focus, input[type="date"]:focus, select:focus {
     top: 15px;
     right: 20px;
     color: #ccc;
-    font-size: 30px;
+    font-size: 28px;
     font-weight: bold;
     cursor: pointer;
 }
@@ -167,10 +199,167 @@ input[type="number"]:focus, input[type="date"]:focus, select:focus {
     color: #fff;
 }
 
+/* Form and Input Styling */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+    padding-left: 10px;
+}
+
+input[type="number"], input[type="date"], select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 2px solid #ffa34d;
+    background-color: #2b334e;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    box-shadow: 0 0 5px rgba(240, 180, 41, 0.75);
+    font-weight: 600;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+input[type="number"]:focus, input[type="date"]:focus, select:focus {
+    box-shadow: 0 0 12px rgba(240, 180, 41, 0.95);
+}
+
+/* Results container styling */
+.results-container {
+    margin-top: 20px;
+    text-align: left;
+    padding: 20px;
+    background: rgba(26, 34, 56, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Hedging Cycle Strategy Button Alignment */
+.risk-management-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.strategy-btn {
+    flex: 1 1 calc(50% - 20px);
+}
+
+/* Hedging Cycle Strategy Details */
+#results p {
+    font-size: 1.2em;
+    line-height: 1.5em;
+    margin-bottom: 1em;
+    font-weight: 600;
+    text-align: left;
+    padding-left: 10px;
+    border-left: 5px solid #00C6FF;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+#results h2 {
+    font-size: 2em;
+    margin-bottom: 1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: left;
+    text-decoration: underline;
+    color: #FFD700; /* Gold for headers */
+}
+
+#results .important {
+    color: #FFD700; /* Gold for important text */
+}
+
+/* Glossary Search Bar Styling */
+#searchBar {
+    width: 100%;
+    padding: 12px;
+    margin: 20px 0;
+    border-radius: 8px;
+    border: 2px solid #ffa34d;
+    background-color: #2b334e;
+    color: #ffffff;
+    font-size: 16px;
+    outline: none;
+    box-shadow: 0 0 12px rgba(240, 180, 41, 0.95);
+    font-weight: 600;
+}
+
+/* Glossary Table Styling */
+#glossaryTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#glossaryTable th, #glossaryTable td {
+    padding: 12px;
+    border: 2px solid #ffa34d;
+    text-align: left;
+    color: #ffffff;
+}
+
+#glossaryTable th {
+    background-color: #2b334e;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+#glossaryTable tr:nth-child(even) {
+    background-color: rgba(43, 51, 78, 0.95);
+}
+
+#glossaryTable tr:hover {
+    background-color: #1e3c72;
+}
+
+/* Visual Strategy Images */
+.visual-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.visual-item {
+    width: 30%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.visual-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.visual-container img:hover {
+    transform: scale(1.05);
+}
+
+.visual-container .description {
+    display: none;
+    background-color: rgba(43, 51, 78, 0.95);
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    color: #f0f0f0;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .container {
         width: 95%;
+        padding: 20px;
     }
 
     .modal-content {
@@ -180,5 +369,9 @@ input[type="number"]:focus, input[type="date"]:focus, select:focus {
     .btn {
         flex: 1 1 100%;
         max-width: none;
+    }
+
+    .visual-item {
+        width: 100%;
     }
 }
