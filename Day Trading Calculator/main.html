@@ -7,31 +7,29 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="welcomeModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <img src="bl.png" alt="Alpha-Arc Capital Logo" class="popup-logo">
+    <!-- Fullscreen Welcome Screen -->
+    <div id="welcomeScreen" class="welcome-screen">
+        <div class="welcome-content">
+            <img src="bl.png" alt="Alpha-Arc Capital Logo" class="welcome-logo">
             <h1>Alpha-Arc Capital - Investor Portal</h1>
-     
             <p>by Taimur Rizwan</p>
-            <button class="btn" onclick="closeModal()">Enter</button>
+            <button class="btn welcome-btn" onclick="enterSite()">Enter</button>
         </div>
     </div>
 
-    <div class="container">
+    <!-- Main content container (hidden initially) -->
+    <div id="mainContainer" class="container" style="display: none;">
         <header>
             <img src="bl.png" alt="Alpha-Arc Capital Logo" class="logo">
             <h1 class="gold-glow">Investor Portal</h1>
-            
             <p>Designed for EUR/USD</p>
         </header>
         <nav class="nav-buttons">
             <div class="button-group">
-                <!-- Overlay with lock icon for the Strategy section -->
-            <div class="strategy-lock-overlay">
-                <img src="mylock-icon.png" alt="Lock Icon" class="lock-icon">
-            </div>
                 <h3 class="section-title">Strategy</h3>
+                <div class="strategy-lock-overlay">
+                    <img src="mylock-icon.png" alt="Lock Icon" class="lock-icon">
+                </div>
                 <button class="btn" onclick="showHedgingCycleStrategy()">Hedging Cycle Strategy</button>
                 <button class="btn" onclick="showVisualStrategy()">Visual</button>
                 <button class="btn" onclick="showRiskManagement()">Layers of Risk Management</button>
@@ -53,5 +51,28 @@
     </footer>
     <script src="features.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function enterSite() {
+            document.getElementById('welcomeScreen').style.display = 'none';
+            document.getElementById('mainContainer').style.display = 'block';
+        }
+        
+        document.querySelector('.strategy-lock-overlay').addEventListener('click', function() {
+            const password = prompt("Enter the password:");
+            if (password === "sandreas") {
+                document.querySelector('.strategy-lock-overlay').style.display = 'none';
+                alert("Access granted. Welcome!");
+            } else {
+                alert("Sorry! You're not allowed to view this information.");
+            }
+        });
+    </script>
+
+    function enterSite() {
+        document.getElementById('welcomeScreen').style.display = 'none';
+        document.getElementById('mainContainer').style.display = 'block';
+    }
+    
+    
 </body>
 </html>
