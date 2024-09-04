@@ -375,3 +375,38 @@ input[type="number"]:focus, input[type="date"]:focus, select:focus {
         width: 100%;
     }
 }
+
+/* Overlay styling for the Strategy section */
+.strategy-lock-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    cursor: pointer;
+    border-radius: 15px; /* Match the button-group styling */
+}
+
+.button-group {
+    position: relative; /* Added to position the overlay */
+}
+
+.strategy-lock-overlay:hover {
+    opacity: 1;
+}
+
+.lock-icon {
+    width: 50px;
+    height: 50px;
+    opacity: 0.8;
+}
+
+.lock-icon:hover {
+    opacity: 1;
+}
