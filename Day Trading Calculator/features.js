@@ -247,49 +247,49 @@ function showVisualStrategy() {
         <div class="visual-container">
             <div class="visual-item">
                 <img src="giphy.gif" alt="Stage 1">
-                <p>I) The market starts trending</p>
+                <p>I) DEMO MODE</p>
                 <div class="description">
-                    <p>After bouncing around, the market determines its direction.</p>
+                    <p>DEMO MODE.</p>
                 </div>
             </div>
             <div class="visual-item">
                 <img src="0c1675cf11ab8cf7597f0715aeb36429.gif" alt="Stage 2">
-                <p>II) I keep riding</p>
+                <p>II) DEMO MODE</p>
                 <div class="description">
-                    <p>At 20% drawdown rate, we double down on the market's trend by changing our TP target to 20 pips thus earning 4%, whilst risking 2%.</p>
+                    <p>DEMO MODE</p>
                 </div>
             </div>
             <div class="visual-item">
                 <img src="flex-tape-water.gif" alt="Stage 3">
-                <p>III) And balancing lots</p>
+                <p>III) DEMO MODE</p>
                 <div class="description">
-                    <p>When an order closes, this leaves room for drawdowns to increase. By repeating orders / balancing lots, we continuously roll equity to maximize profits.</p>
+                    <p>DEMO MODE</p>
                 </div>
             </div>
             <div class="visual-item">
                 <img src="giphy-ezgif.com-webp-to-gif-converter.gif" alt="Stage 4">
                 <p>IV) Until the market gets tired</p>
                 <div class="description">
-                    <p>The market is slowing down, signaling a change in trend. Putting us in gridlock.</p>
+                    <p>DEMO MODE</p>
                 </div>
             </div>
             <div class="visual-item">
                 <img src="w.gif" alt="Stage 5">
-                <p>V) And starts reversing</p>
+                <p>V) DEMO MODE</p>
                 <div class="description">
-                    <p>The market is correcting, causing the drawdown rate to dramatically drop.</p>
+                    <p>DEMO MODE</p>
                 </div>
             </div>
             <div class="visual-item">
                 <img src="giphy (1).gif" alt="Stage 6">
-                <p>VI) So I stop trading and wait</p>
+                <p>VI) DEMO MODE</p>
                 <div class="description">
-                    <p>We sell our re-gridlocked order close to break even or profit, then ride the original order back to break even or profit.</p>
+                    <p>DEMO MODE</p>
                 </div>
             </div>
             <div class="visual-item">
                 <img src="giphy (3).gif" alt="Stage 7">
-                <p>VII) Then collect the bag and ride off to the sunset 🌅</p>
+                <p>VII) DEMO MODE 🌅</p>
                 <div class="description">
                     <p>The strategy has paid off, and it's time to enjoy the rewards.</p>
                 </div>
@@ -507,35 +507,35 @@ function showPhaseDetails(phase) {
         case 'Quickfire':
             details = `
                 <h2>Phase 1: Quickfire</h2>
-                <p>Both hedge-orders <span class="important">trigger quickly</span>.</p>
+                <p>DEMO <span class="important">DEMO MODE</span>.</p>
             `;
             break;
         case 'Side Accumulation':
             details = `
                 <h2>Phase 2: Side Accumulation</h2>
-                <p>The main way to build equity. One side goes into a <span class="important">20% drawdown</span> while you keep hedging on the other side as much as possible.</p>
-                <p class="important">ALL GAS, NO BRAKES!</p>
-                <p>Be alert 24/7, including sleep, to hedge orders. You can only rest when the cycle gridlocks.</p>
+                <p>DEMO MODE <span class="important">DEMO MODE</span> DEMO MODE</p>
+                <p class="important">DEMO MODE</p>
+                <p>DEMO MODE</p>
             `;
             break;
         case 'Gridlock':
             details = `
                 <h2>Phase 3: Gridlock</h2>
-                <p><span class="important">What is Gridlock:</span> Gridlock means you’ve bought the local top and bottom of the market. Take a break, relax.</p>
-                <p><span class="important">Optional:</span> Trade Ripple-Effects (only after 25% profit) until the Account Equity hits 2X.</p>
-                <p><span class="important">Weak Gridlock:</span> When the price is just slow. Typically lasts a day or two.</p>
-                <p><span class="important">Heavy Gridlock:</span> When the market crashes. It lasts a few weeks. Usually, the time when the market must make a decision.</p>
+                <p><span class="important">DEMO MODE</span> DEMO MODE</p>
+                <p><span class="important">DEMO MODE</span> DEMO MODE</p>
+                <p><span class="important">DEMO MODE</span> DEMO MODE</p>
+                <p><span class="important">DEMO MODE</span> DEMO MODE</p>
             `;
             break;
         case 'Exit':
             details = `
                 <h2>Final Phase: The Exit 🏁</h2>
                 <p>When you decide to break the gridlock:</p>
-                <p><span class="important">STOP TRADING</span> and <span class="important">WAIT</span> for DRAWDOWN to CLEAR.</p>
+                <p><span class="important">DEMO MODE</span> and <span class="important">WAIT</span> DEMO MODE</p>
             `;
             break;
         default:
-            details = '<p>Select a valid phase.</p>';
+            details = '<p>DEMO MODE</p>';
     }
     document.getElementById('results').innerHTML = details;
 }
@@ -545,22 +545,22 @@ function showRiskManagement() {
     document.getElementById('formContainer').innerHTML = `
         <h2><u>Layers of Risk Management</u></h2>
         <div class="risk-management-content" style="text-align: left; padding-left: 20px;">
-            <p><strong><u>1. Continuously Balancing Lots 24/7</u></strong></p>
-            <p style="margin-left: 20px;">To keep the equity rolling and <strong>ride the profit wave</strong> as closely as possible, no matter how <span style="color: #FFD700;">volatile</span> the market gets.</p>
-            <p style="margin-left: 20px;">We set <strong>alerts</strong> so no matter how fast or hard the market goes, we capture all the profits <strong>24/7</strong>. This is so we can <span style="color: #00C6FF;">maximize equity rolling</span> whilst <span style="color: #00C6FF;">minimizing the impact</span> of the drawdown; these things combine to keep our account as safe as possible from liquidation.</p>
+            <p><strong><u>1. DEMO MODE</u></strong></p>
+            <p style="margin-left: 20px;">DEMO MODE</strong> DEMO MODE <span style="color: #FFD700;">volatile</span> DEMO MODE</p>
+            <p style="margin-left: 20px;">We set <strong>alerts</strong> so no matter how fast or hard the market goes, we capture all the profits <strong>24/7</strong>. DEMO MODE <span style="color: #00C6FF;">DEMO MODE</span>DEMO MODE <span style="color: #00C6FF;">DEMO MODE</span> DEMO MODE</p>
 
             <p><strong><u>2. Freezing the risk at 2%</u></strong></p>
-            <p style="margin-left: 20px;">This allows us to have a plentiful <span style="color: #FFD700;">500 pips</span> drawdown room. And the more profit we make by continuously balancing lots, the more our drawdown room increases, therefore <strong>increasing our overall safety net</strong>.</p>
+            <p style="margin-left: 20px;">DEMO MODE <span style="color: #FFD700;">DEMO MODE</span> DEMO MODE</p>
 
-            <p><strong><u>3. Increasing the TP to 20 pips at 20% drawdown</u></strong></p>
-            <p style="margin-left: 20px;">The system is designed to outlast and stretch to accommodate <strong>any market condition</strong>, from slow periods to <span style="color: #FFD700;">booms/recessions</span>.</p>
-            <p style="margin-left: 20px;">By adjusting our TP at <strong>20% Drawdown Rate</strong>, we’re confident in the market’s direction so we capture as much profit from the market trend <strong>24/7</strong>. Since we set <strong>2% risk</strong> at 10 pips, setting <strong>20 pips TP</strong> allows us to maximize on the market’s move by earning us <strong>4%</strong>, even though our drawdown rate is locked at <span style="color: #00C6FF;">2%</span>. This means I gain more whilst risking less.</p>
+            <p><strong><u>3. DEMO MODE</u></strong></p>
+            <p style="margin-left: 20px;">DEMO MODE</strong>, DEMO MODE <span style="color: #FFD700;">DEMO MODE</span>.</p>
+            <p style="margin-left: 20px;">DEMO MODE <strong>DEMO MODE</strong>, DEMO MODE</p>
 
-            <p style="text-align: center; font-weight: bold; color: #ffffff;"><u>Ideal Pips Collected per Year (2 times per day for 4 days a week)</u></p>
+            <p style="text-align: center; font-weight: bold; color: #ffffff;"><u>DEMO MODE</u></p>
             <p style="text-align: center;">Base Case (10 pips) = 10 pips * 2 times * 4 days * 4 weeks * 12 months = up to 3,840 pips per year</p>
             <p style="text-align: center;">Adjusted Case (20 pips) = up to 7,680 pips per year</p>
 
-            <p style="text-align: center; font-weight: bold; color: #ffffff;">Therefore, these 3 Layers of Risk Management work in the system to ensure we can use the Hedging Cycle Strategy to make enough profits to ride the price wave effectively no matter how slow or volatile it gets. Because EUR/USD has historically never moved this many pips in a year. Ultimately keeping our money 100% safe in any economically challenging time.</p>
+            <p style="text-align: center; font-weight: bold; color: #ffffff;">DEMO MODE</p>
         </div>
     `;
     clearResults();
